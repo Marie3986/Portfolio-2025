@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marie Bergström - UX Designer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background-color: #2d3250;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(45, 50, 80, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #f9b17a;
+    margin-bottom: 0.2rem;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: #676f9d;
+    font-weight: 400;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #f9b17a;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #f9b17a;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, #2d3250 0%, #424769 100%);
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23f9b17a" stop-opacity="0.1"/><stop offset="100%" stop-color="%23f9b17a" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="150" fill="url(%23a)"/><circle cx="800" cy="300" r="100" fill="url(%23a)"/><circle cx="300" cy="700" r="120" fill="url(%23a)"/></svg>') no-repeat center center;
+    background-size: cover;
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: #676f9d;
+    line-height: 1.7;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #f9b17a;
+    color: #2d3250;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(249, 177, 122, 0.3);
+}
+
+.cta-button:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(249, 177, 122, 0.4);
+}
+
+/* Section Styles */
+section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: #f9b17a;
+}
+
+/* About Section */
+.about {
+    background-color: #424769;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #ffffff;
+    line-height: 1.8;
+}
+
+.image-placeholder {
+    background-color: #676f9d;
+    border-radius: 20px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border: 3px solid #f9b17a;
+    overflow: hidden;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 18px;
+}
+
+/* Projects Section */
+.projects {
+    background-color: #2d3250;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: #424769;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: #f9b17a;
+    box-shadow: 0 10px 30px rgba(249, 177, 122, 0.2);
+}
+
+.project-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.project-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #676f9d 0%, #f9b17a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.project-content {
+    padding: 2rem;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #f9b17a;
+}
+
+.project-description {
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.project-link {
+    color: #f9b17a;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: #ffffff;
+}
+
+/* Contact Section */
+.contact {
+    background-color: #424769;
+}
+
+.contact-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-description {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #ffffff;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #f9b17a;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    border: 2px solid #f9b17a;
+}
+
+.contact-link:hover {
+    background-color: #f9b17a;
+    color: #2d3250;
+    transform: translateY(-2px);
+}
+
+.contact-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Footer */
+.footer {
+    background-color: #2d3250;
+    padding: 2rem 0;
+    text-align: center;
+    border-top: 1px solid #424769;
+}
+
+.footer-text {
+    color: #676f9d;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-list {
+        gap: 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .project-content {
+        padding: 1.5rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.6s ease;
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.6s ease;
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Loading Animation */
+body.loading {
+    overflow: hidden;
+}
+
+body.loading::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2d3250;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded::before {
+    opacity: 0;
+    pointer-events: none;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Marie Bergström</h1>
+                    <p class="tagline">UX Designer & User Research Specialist</p>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="#about" class="nav-link">About Me</a></li>
+                        <li><a href="#projects" class="nav-link">Projects</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Creating digital experiences people love to use</h2>
+                <p class="hero-description">Good design isn’t just seen, it’s felt. My goal as a UX designer is to create experiences that feel effortless, grounded in research, shaped by empathy, and refined with creativity.</p>
+                <a href="#projects" class="cta-button">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About Me</h2>
+                    <p>Hi, I'm a UX designer who's all about turning challenges into simple, human-centered solutions. I believe the best designs come from curiosity, asking questions, listening closely, and always keeping people at the heart of the process. For me, design is less about shiny visuals and more about creating experiences that actually make life easier (though I do love a clean, elegant interface).</p>
+                    <p>Outside of projects and prototypes, you'll probably find me recharging at the gym or diving into a good book. Both help me stay balanced, inspired, and ready to bring fresh ideas into my design work. In short: I'm passionate about crafting digital experiences people love to use, and I'm always looking for new ways to grow and explore as a designer.</p>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <img src="Images/Marie.jpg" alt="Marie Bergström - UX Designer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Images/Academedia.png" alt="Academedia – Digitalizing Conversation Cards">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Academedia – Digitalizing Conversation Cards</h3>
+                        <p class="project-description">Designed to create safety and interactivity in youth conversations about emotions.</p>
+                        <a href="#" class="project-link">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Images/Tryggastag.png" alt="Trygga Steg – App for Women's Safety">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Trygga Steg – App for Women’s Safety</h3>
+                        <p class="project-description">A user-centered UX solution that enhances safety in public spaces.</p>
+                        <a href="#" class="project-link">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Images/Cuviva.png" alt="Cuviva – UX Research for Healthcare Professionals">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Cuviva – UX Research for Healthcare Professionals</h3>
+                        <p class="project-description">Insight-driven research improving workflow for healthcare staff</p>
+                        <a href="#" class="project-link">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Images/Alfrednobel.png" alt="Alfred Nobel Museum – Engaging Teens Through Gamification">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Alfred nobel museum– Engaging Teens Through Gamification</h3>
+                        <p class="project-description">An interactive museum journey for 13–15-year-olds, combining Kahoot challenges, live roleplay, and social media marketing to spark curiosity and learning.</p>
+                        <a href="#" class="project-link">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Images/Sleep.png" alt="Sleepocalypse – Post-Apocalyptic Game">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sleepocalyspe – Post-Apocalyptic Game</h3>
+                        <p class="project-description">A game design project exploring UI for a post-apocalyptic game world, blending cyberpunk aesthetics with immersive interaction design.</p>
+                        <a href="#" class="project-link">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Images/Ica.png" alt="ICA Food Waste – UX Project for Sustainable Living">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">ICA Food Waste – UX Project for Sustainable Living</h3>
+                        <p class="project-description">Applying UX methods to tackle food waste, resulting in a prototype aimed at raising awareness and changing everyday habits.</p>
+                        <a href="#" class="project-link">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <p class="contact-description">I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:mariebergstrom8@gmail.com" class="contact-link">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        mariebergstrom8@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/marie-bergström00" class="contact-link" target="_blank">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8A6 6 0 0 1 22 14V21H18V14A2 2 0 0 0 14 14V21H10V9H14V11.5C14.5 10.5 15.5 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">Thanks for visiting! ✨</p>
+        </div>
+    </footer>
+
+    <script>
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all functionality
+    initSmoothScrolling();
+    initActiveNavigation();
+    initScrollEffects();
+    initAnimations();
+    initInteractiveEffects();
+    initLoadingAnimation();
+});
+
+// Smooth scrolling for navigation links
+function initSmoothScrolling() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Active navigation highlighting
+function initActiveNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section[id]');
+    
+    function updateActiveNav() {
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav(); // Initial call
+}
+
+// Header scroll effects
+function initScrollEffects() {
+    const header = document.querySelector('.header');
+    
+    function updateHeaderOnScroll() {
+        const scrollPosition = window.scrollY;
+        
+        if (scrollPosition > 50) {
+            header.style.backgroundColor = 'rgba(45, 50, 80, 0.98)';
+            header.style.backdropFilter = 'blur(15px)';
+        } else {
+            header.style.backgroundColor = 'rgba(45, 50, 80, 0.95)';
+            header.style.backdropFilter = 'blur(10px)';
+        }
+    }
+    
+    window.addEventListener('scroll', updateHeaderOnScroll);
+}
+
+// Intersection Observer for animations
+function initAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    // Add animation classes and observe elements
+    const animatedElements = [
+        { selector: '.hero-content', class: 'fade-in' },
+        { selector: '.about-text', class: 'slide-in-left' },
+        { selector: '.about-image', class: 'slide-in-right' },
+        { selector: '.project-card', class: 'fade-in' },
+        { selector: '.contact-content', class: 'fade-in' },
+        { selector: '.section-title', class: 'fade-in' }
+    ];
+    
+    animatedElements.forEach(({ selector, class: animationClass }) => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((element, index) => {
+            element.classList.add(animationClass);
+            element.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(element);
+        });
+    });
+}
+
+// Interactive effects
+function initInteractiveEffects() {
+    // Project card hover effects
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Contact link hover effects
+    const contactLinks = document.querySelectorAll('.contact-link');
+    
+    contactLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+            this.style.boxShadow = '0 8px 25px rgba(249, 177, 122, 0.3)';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+    
+    // CTA button effects
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+        
+        ctaButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    }
+}
+
+// Parallax effect for hero background
+function initParallaxEffect() {
+    const heroBackground = document.querySelector('.hero-background');
+    
+    if (heroBackground) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            heroBackground.style.transform = `translateY(${parallax}px)`;
+        });
+    }
+}
+
+// Mobile menu functionality
+function initMobileMenu() {
+    // Create mobile menu toggle button
+    const header = document.querySelector('.header-content');
+    const nav = document.querySelector('.nav');
+    
+    // Create hamburger button
+    const mobileMenuBtn = document.createElement('button');
+    mobileMenuBtn.className = 'mobile-menu-btn';
+    mobileMenuBtn.innerHTML = '☰';
+    mobileMenuBtn.style.cssText = `
+        display: none;
+        background: none;
+        border: none;
+        color: #f9b17a;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+    `;
+    
+    header.appendChild(mobileMenuBtn);
+    
+    // Mobile menu toggle functionality
+    mobileMenuBtn.addEventListener('click', () => {
+        nav.classList.toggle('mobile-open');
+    });
+    
+    // Add mobile styles
+    const mobileStyles = document.createElement('style');
+    mobileStyles.textContent = `
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block !important;
+            }
+            
+            .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: rgba(45, 50, 80, 0.98);
+                backdrop-filter: blur(15px);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            .nav.mobile-open {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+        }
+    `;
+    document.head.appendChild(mobileStyles);
+}
+
+// Loading animation
+function initLoadingAnimation() {
+    document.body.classList.add('loading');
+    
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded');
+        }, 500);
+    });
+}
+
+// Smooth reveal animations for sections
+function initSectionReveal() {
+    const sections = document.querySelectorAll('section');
+    
+    const revealSection = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    };
+    
+    const sectionObserver = new IntersectionObserver(revealSection, {
+        threshold: 0.15
+    });
+    
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'all 0.6s ease';
+        sectionObserver.observe(section);
+    });
+}
+
+// Initialize all effects
+document.addEventListener('DOMContentLoaded', function() {
+    initParallaxEffect();
+    initMobileMenu();
+    initSectionReveal();
+});
+
+// Utility function for smooth animations
+function animateElement(element, properties, duration = 300) {
+    return new Promise(resolve => {
+        const startTime = performance.now();
+        const startValues = {};
+        
+        // Get initial values
+        Object.keys(properties).forEach(prop => {
+            startValues[prop] = parseFloat(getComputedStyle(element)[prop]) || 0;
+        });
+        
+        function animate(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function (ease-out)
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            
+            Object.keys(properties).forEach(prop => {
+                const startValue = startValues[prop];
+                const endValue = properties[prop];
+                const currentValue = startValue + (endValue - startValue) * easeOut;
+                element.style[prop] = currentValue + (prop.includes('opacity') ? '' : 'px');
+            });
+            
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            } else {
+                resolve();
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    });
+}
+
+// Performance optimization: Throttle scroll events
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+// Apply throttling to scroll events
+window.addEventListener('scroll', throttle(() => {
+    // Scroll-dependent functions are already optimized above
+}, 16)); // ~60fps
+    </script>
+</body>
+</html>
