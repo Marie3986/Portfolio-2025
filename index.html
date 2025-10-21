@@ -310,6 +310,76 @@ section {
     flex-wrap: wrap;
 }
 
+.email-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.email-link {
+    position: relative;
+}
+
+.email-text {
+    user-select: all;
+    cursor: text;
+    transition: background-color 0.2s ease;
+}
+
+.email-text:hover {
+    background-color: rgba(249, 177, 122, 0.1);
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.copy-btn {
+    background: transparent;
+    border: 2px solid #f9b17a;
+    color: #f9b17a;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+}
+
+.copy-btn:hover {
+    background-color: #f9b17a;
+    color: #2d3250;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.copy-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.copy-feedback {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f9b17a;
+    color: #2d3250;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+.copy-feedback.show {
+    opacity: 1;
+}
+
 .contact-link {
     display: flex;
     align-items: center;
@@ -520,23 +590,23 @@ body.loaded::before {
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="Images/Academedia.png" alt="Academedia – Digitalizing Conversation Cards">
+                        <img src="Images/Löfbergs.png" alt="Kafferosteriet Löfbergs - Ongoing UX project">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Academedia – Digitalizing Conversation Cards</h3>
-                        <p class="project-description">Designed to create safety and interactivity in youth conversations about emotions.</p>
-                        <a href="#" class="project-link">Read More</a>
+                        <h3 class="project-title">Kafferosteriet Löfbergs - Ongoing UX project</h3>
+                        <p class="project-description">Coming soon</p>
+                        <a href="cuviva.html" class="project-link">Read More</a>
                     </div>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="Images/Tryggastag.png" alt="Trygga Steg – App for Women's Safety">
+                        <img src="Images/Academedia.png" alt="Academedia – Digitalizing Conversation Cards">
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Trygga Steg – App for Women’s Safety</h3>
-                        <p class="project-description">A user-centered UX solution that enhances safety in public spaces.</p>
-                        <a href="#" class="project-link">Read More</a>
+                        <h3 class="project-title">Academedia – Digitalizing Conversation Cards</h3>
+                        <p class="project-description">Designed to create safety and interactivity in youth conversations about emotions.</p>
+                        <a href="academedia.html" class="project-link">Read More</a>
                     </div>
                 </div>
                 
@@ -547,7 +617,7 @@ body.loaded::before {
                     <div class="project-content">
                         <h3 class="project-title">Cuviva – UX Research for Healthcare Professionals</h3>
                         <p class="project-description">Insight-driven research improving workflow for healthcare staff</p>
-                        <a href="#" class="project-link">Read More</a>
+                        <a href="alfred.html" class="project-link">Read More</a>
                     </div>
                 </div>
                 
@@ -558,7 +628,7 @@ body.loaded::before {
                     <div class="project-content">
                         <h3 class="project-title">Alfred nobel museum– Engaging Teens Through Gamification</h3>
                         <p class="project-description">An interactive museum journey for 13–15-year-olds, combining Kahoot challenges, live roleplay, and social media marketing to spark curiosity and learning.</p>
-                        <a href="#" class="project-link">Read More</a>
+                        <a href="alfred.html" class="project-link">Read More</a>
                     </div>
                 </div>
                 
@@ -569,7 +639,7 @@ body.loaded::before {
                     <div class="project-content">
                         <h3 class="project-title">Sleepocalyspe – Post-Apocalyptic Game</h3>
                         <p class="project-description">A game design project exploring UI for a post-apocalyptic game world, blending cyberpunk aesthetics with immersive interaction design.</p>
-                        <a href="#" class="project-link">Read More</a>
+                        <a href="sleepocalypse.html" class="project-link">Read More</a>
                     </div>
                 </div>
                 
@@ -580,7 +650,7 @@ body.loaded::before {
                     <div class="project-content">
                         <h3 class="project-title">ICA Food Waste – UX Project for Sustainable Living</h3>
                         <p class="project-description">Applying UX methods to tackle food waste, resulting in a prototype aimed at raising awareness and changing everyday habits.</p>
-                        <a href="#" class="project-link">Read More</a>
+                        <a href="ica.html" class="project-link">Read More</a>
                     </div>
                 </div>
             </div>
@@ -594,13 +664,22 @@ body.loaded::before {
             <div class="contact-content">
                 <p class="contact-description">I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
                 <div class="contact-links">
-                    <a href="mailto:mariebergstrom8@gmail.com" class="contact-link">
-                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        mariebergstrom8@gmail.com
-                    </a>
+                    <div class="email-container">
+                        <a href="mailto:mariebergstrom8@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Marie,%0D%0A%0D%0AI%20found%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you.%0D%0A%0D%0ABest%20regards," class="contact-link email-link">
+                            <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="email-text" id="email-address">mariebergstrom8@gmail.com</span>
+                        </a>
+                        <button class="copy-btn" id="copy-email-btn" title="Copy email address">
+                            <svg class="copy-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <div class="copy-feedback" id="copy-feedback">Copied!</div>
+                    </div>
                     <a href="https://linkedin.com/in/marie-bergström00" class="contact-link" target="_blank">
                         <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16 8A6 6 0 0 1 22 14V21H18V14A2 2 0 0 0 14 14V21H10V9H14V11.5C14.5 10.5 15.5 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -957,6 +1036,82 @@ function throttle(func, limit) {
 window.addEventListener('scroll', throttle(() => {
     // Scroll-dependent functions are already optimized above
 }, 16)); // ~60fps
+
+// Email copy functionality
+function initEmailCopyFeature() {
+    const copyBtn = document.getElementById('copy-email-btn');
+    const emailText = document.getElementById('email-address');
+    const feedback = document.getElementById('copy-feedback');
+    
+    if (copyBtn && emailText && feedback) {
+        copyBtn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            try {
+                // Get the email text content
+                const emailAddress = emailText.textContent.trim();
+                
+                // Copy to clipboard using modern API
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(emailAddress);
+                } else {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = emailAddress;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    textArea.remove();
+                }
+                
+                // Show feedback
+                feedback.classList.add('show');
+                
+                // Hide feedback after 2 seconds
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                }, 2000);
+                
+            } catch (err) {
+                console.error('Failed to copy email:', err);
+                // Show error feedback
+                feedback.textContent = 'Copy failed';
+                feedback.classList.add('show');
+                setTimeout(() => {
+                    feedback.textContent = 'Copied!';
+                    feedback.classList.remove('show');
+                }, 2000);
+            }
+        });
+        
+        // Make email text selectable with double-click
+        emailText.addEventListener('dblclick', function() {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(this);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        });
+        
+        // Add keyboard accessibility
+        copyBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    }
+}
+
+// Initialize email copy feature
+document.addEventListener('DOMContentLoaded', function() {
+    initEmailCopyFeature();
+});
     </script>
 </body>
 </html>
